@@ -12,8 +12,8 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
-import Logo from '../../components/Logo';
-import { THEMES, USER } from '../../constants';
+import Logo from '../../../components/Logo';
+import { THEMES, USER } from '../../../constants';
 import Settings from './Settings';
 
 const useStyles = makeStyles((theme) => ({

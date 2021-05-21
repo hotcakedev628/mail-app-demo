@@ -17,8 +17,8 @@ import {
   makeStyles
 } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
-import useSettings from '../../hooks/useSettings';
-import { THEMES } from '../../constants';
+import useSettings from '../../../hooks/useSettings';
+import { THEMES } from '../../../constants';
 
 const useStyles = makeStyles((theme) => ({
   badge: {
