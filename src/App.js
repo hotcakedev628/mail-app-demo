@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Router, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import { SnackbarProvider } from 'notistack';
+import {
+  StylesProvider,
+  ThemeProvider
+} from '@material-ui/core';
+import useSettings from './hooks/useSettings';
+import GlobalStyles from './components/GlobalStyles';
+import { createTheme } from './theme';
+import routes, { renderRoutes } from './routes';
 
-function App() {
+const history = createBrowserHistory();
+
+const App = () => {
+  const { settings } = useSettings();
+
+  const theme = createTheme({
+    theme: settings.theme
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <ThemeProvider theme={theme}>
+      <StylesProvider>
+        <SnackbarProvider
+          dense
+          maxSnack={3}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Router history={history}>
+            <GlobalStyles />
+            {renderRoutes(routes)}
+          </Router>
+        </SnackbarProvider>
+      </StylesProvider>
+    </ThemeProvider>
   );
 }
 
